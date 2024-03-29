@@ -85,7 +85,7 @@ function App() {
       <div>
         {
           picturesData.map((d) => (
-            <div class="card" >
+            <div class="card" style={{ width: 500 }} >
               <img src={d.url} class="card-img-top" alt="..."/>
                 <div class="card-body">
                   <h5 class="card-title">d.title</h5>
@@ -95,7 +95,6 @@ function App() {
           ))
         }
       </div>
-
     </>
   )
 }
