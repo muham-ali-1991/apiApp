@@ -1,6 +1,15 @@
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
+
+  const [homeData, sethomeData] = useState([]);
+
+  const loadHome = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const conv = await res.json();
+    sethomeData(conv);
+  }
 
   return (
     <>
@@ -13,7 +22,7 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <a className="nav-link active" aria-current="page" href="#" onClick={loadHome}>Load Posts</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Features</a>
@@ -25,6 +34,22 @@ function App() {
           </div>
         </div>
       </nav>
+
+      <div>
+        {
+          homeData.map((d) => (
+            <div key={d.id} className="card">
+              < div className="card-body">
+                < h5 className="card-title">{d.title}</h5>
+                <p className="card-text">{d.body}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      
+
     </>
   )
 }
